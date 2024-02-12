@@ -1,0 +1,122 @@
+CREATE TABLE customer (
+	customer_id BIGSERIAL PRIMARY KEY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	phone_number VARCHAR(20) UNIQUE,
+	point integer
+)
+
+
+CREATE TABLE product (
+	prod_id SERIAL PRIMARY KEY,
+	prod_name varchar(50),
+	prod_type varchar(20),
+	prod_cost integer NOT NULL,
+	stock integer,
+	price integer NOT NULL,
+	point_reward integer NOT NULL
+)
+
+
+CREATE TABLE sitting_area (
+	table_id SERIAL PRIMARY KEY,
+	floor integer NOT NULL,
+	status varchar(10)
+)
+
+
+CREATE TABLE staff (
+	staff_id integer PRIMARY KEY UNIQUE NOT NULL,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	address VARCHAR(50) NOT NULL,
+	phone_number VARCHAR(20) NOT NULL UNIQUE
+)
+
+CREATE TABLE certificate_bartender (
+    certificate_id SERIAL PRIMARY KEY,
+    bartender_id INTEGER REFERENCES staff(staff_id), -- Reference staff_id from staff table
+    name VARCHAR(55)
+);
+
+CREATE TABLE bartender (
+	year_experiment INTEGER,
+	award VARCHAR
+)INHERITS (staff);
+
+CREATE TABLE certificate_chef (
+    certificate_id SERIAL PRIMARY KEY,
+    chef_id INTEGER REFERENCES staff(staff_id),
+    name VARCHAR(55)
+);
+
+CREATE TABLE chef (
+	year_experiment INTEGER,
+	award VARCHAR(30)
+) INHERITS (staff);
+
+CREATE TABLE certificate_chef(
+	certificate_id INTEGER,
+	name VARCHAR(55)
+);
+
+
+CREATE TABLE waiter (
+	
+)INHERITS(staff)
+
+
+CREATE TABLE orders (
+	order_id BIGSERIAL PRIMARY KEY,
+	customer_id integer REFERENCES customer,
+	table_id integer REFERENCES sitting_area,
+	bartender_id integer REFERENCES staff(staff_id),
+	chef_id integer REFERENCES staff(staff_id),
+	waiter_id integer REFERENCES staff(staff_id),
+	status VARCHAR(20) NOT NULL,
+	total_price integer NOT NULL,
+	order_date TIMESTAMP
+)
+
+
+CREATE TABLE orderline (
+	orderline_id integer NOT NULL,
+	order_id integer REFERENCES orders,
+	product_id integer REFERENCES product,
+	quantity smallint NOT NULL,
+	
+)
+
+
+CREATE OR REPLACE FUNCTION update_total_amount()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE orders
+    SET total_price = (
+        SELECT SUM(product.price * orderline.quantity)
+        FROM orderline
+        JOIN product ON orderline.product_id = product.prod_id
+        WHERE orderline.order_id = NEW.order_id
+    )
+    WHERE orders.order_id = NEW.order_id;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION update_customer_points()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE customer
+    SET point = point + (NEW.quantity * (
+        SELECT point_reward
+        FROM product
+        WHERE prod_id = NEW.product_id
+    ))
+    WHERE customer_id = NEW.customer_id;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
