@@ -1,0 +1,21 @@
+﻿staff_id,first_name,last_name,address,phone_number,Total_star,Rating_quantity,Rating,year_experiment,award
+1,PHAN,TUỆ ANH,"SÀI ĐỒNG, LONG BIÊN",(34) 294-2102,20,7,0,3,USBG (United States Bartenders' Guild) Certifications
+2,NGUYỄN,HOÀNG HẢI,TỔ 7 GIANG BIÊN,(86) 683-2875,35,10,0,8,IBD (Institute of Brewing and Distilling) Diplomas
+3,NGUYỄN,THẾ HẢI ĐĂNG,"THẠCH BÀN, LB",(86) 985-2691,35,10,0,7,
+4,TRƯƠNG,HÀ VY,Vũ Xuân Thiều,(86) 752-7440,25,8,0,2,
+5,HOÀNG,THÙY LINH,CHUNG CƯ LOTUS ,(97) 258-9907,38,11,0,4,
+6,NGUYỄN,CHÂU GIANG,"VŨ XUÂN THIỀU, SÀI ĐỒNG",(92) 359-2007,31,8,0,9,WSET (Wine & Spirit Education Trust) Awards
+7,ĐÀO,HỮU TUYẾN,TỔ 8 SÀI ĐỒNG,(58) 233-7658,29,8,0,1,
+8,NGUYỄN,MAI CHI,"THẠCH BÀN, LB",(96) 731-4375,48,12,0,6,
+9,TẠ,MINH THƯ,"NGỌC THỤY, LB",(97) 306-3801,68,15,0,5,
+10,VƯƠNG,HÀ ANH,"NGỌC THỤY, LB",(97) 409-3269,46,12,0,1,
+11,VĂN,TẤT MINH,"đặng xá, gia lam",(83) 368-5897,63,13,0,2,
+12,TRẦN,MINH ANH,Hà Nội,(98) 211-9294,27,8,0,7,
+13,NGUYỄN,THU NGÂN,Việt Hưng,(87) 826-6573,42,11,0,1,
+14,TRƯƠNG,HÀ ANH,NGỌC THỤY ,(36) 989-1251,69,15,0,5,
+15,NGUYỄN,NGỌC ANH,Hà Nội,(35) 606-2130,64,14,0,8,
+16,NGUYỄN,HÀ ANH,NGUYỄN VĂN CỪ ,(88) 632-6107,69,15,0,3,
+17,NGUYỄN,HOÀNG TUẤN ANH,Phúc Đồng ,(98) 119-1592,39,11,0,10,BarSmarts Certification
+18,HOÀNG,NGUYỄN NHẬT ANH,LONG BIÊN,(96) 509-2709,50,12,0,6,
+19,NGUYỄN,TUẤN ANH,Hà Nội,(37) 388-5407,61,13,0,4,
+20,HOÀNG,HẢI ANH,Hải Dương,(98) 543-2478,33,9,0,9,BarSmarts Certification
